@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Códigos M02 · ILERNA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+<style>
+:root{
+  --morado:#9c84bc; --morado-osc:#6f5a96; --lavanda:#dcdce8;
+  --lavanda-cl:#efeff6; --gris-cod:#ececec; --naranja:#f09854;
+  --azul:#b4d8f0; --tinta:#1d1d1f; --gris:#6b6b72; --linea:#e2e2ea;
+  --fondo:#ffffff;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--fondo);color:var(--tinta);
+  font:15px/1.6 "Fira Sans",system-ui,sans-serif}
+header{position:sticky;top:0;z-index:20;background:#fff;
+  border-bottom:1px solid var(--linea)}
+.barra{display:flex;align-items:center;gap:18px;padding:12px 28px}
+.barra img{height:26px}
+.barra .tit{font-weight:300;color:var(--gris);font-size:14px;
+  letter-spacing:.02em}
+.barra .tit b{font-weight:600;color:var(--morado-osc)}
+.pagina{max-width:1320px;margin:0 auto;padding:24px 28px 80px;
+  display:grid;grid-template-columns:270px minmax(0,1fr);gap:34px}
+.indice{position:sticky;top:70px;align-self:start;
+  max-height:calc(100vh - 90px);overflow:auto;font-size:13px;
+  padding-right:8px;border-right:2px solid var(--lavanda)}
+.indice-tit{font-weight:700;color:var(--morado);font-size:20px;
+  margin-bottom:8px}
+.indice a{display:block;text-decoration:none;color:var(--tinta);
+  border-radius:6px;padding:3px 8px}
+.indice a:hover{background:var(--lavanda-cl);color:var(--morado-osc)}
+.i-tema{margin-top:12px;font-weight:600;color:var(--morado-osc)!important}
+.i-tema b{display:inline-block;min-width:18px;color:var(--morado)}
+.i-apt{padding-left:22px!important;color:var(--gris)!important}
+.contenido{min-width:0}
+.portada{display:flex;align-items:flex-end;justify-content:space-between;
+  gap:20px;border-bottom:1px solid var(--linea);padding:10px 0 22px;
+  margin-bottom:10px}
+.modulo{display:inline-block;background:var(--morado);color:#fff;
+  font-weight:700;border-radius:999px;padding:2px 14px;font-size:13px}
+.portada h1{font-weight:300;color:#8a8a8f;font-size:38px;line-height:1.1;
+  margin:10px 0 6px;letter-spacing:.01em}
+.curso{margin:0;font-variant:small-caps;color:var(--gris);font-size:15px}
+.portada h3.docente{margin:8px 0 0;font-size:16px;font-weight:600;
+  color:var(--morado-osc)}
+.portada-n{color:var(--gris);font-size:13px;text-align:right}
+.portada-n b{display:block;font-size:34px;color:var(--morado);
+  font-weight:700;line-height:1}
+.tema{margin-top:38px}
+.tema-cab{display:flex;align-items:center;gap:16px;
+  background:linear-gradient(90deg,var(--lavanda-cl),#fff);
+  border-left:6px solid var(--morado);padding:14px 18px;
+  border-radius:0 10px 10px 0}
+.tema-num{font-size:54px;font-weight:700;color:var(--morado);line-height:1}
+.tema-cab h2{margin:0;font-size:19px;font-weight:600;
+  color:var(--morado-osc);letter-spacing:.02em}
+.apartado{margin:28px 0 0}
+.apartado h3{display:flex;gap:10px;align-items:baseline;
+  font-size:19px;margin:0 0 12px;color:var(--tinta)}
+.apartado h3 .num{font-weight:700;color:var(--tinta)}
+.apartado h3 .sc{font-variant:small-caps;font-weight:600;
+  letter-spacing:.02em}
+.ficha{background:var(--lavanda);border-radius:4px;padding:14px 18px 16px;
+  margin:0 0 16px}
+.ficha-cab{display:flex;align-items:center;gap:10px;margin-bottom:6px;
+  border-bottom:1.5px solid #8e83b3;padding-bottom:8px}
+.lapiz{width:30px;height:14px;border:1.5px solid #5f5590;border-radius:3px;
+  position:relative;margin-right:4px}
+.lapiz::after{content:"";position:absolute;right:-9px;top:1px;
+  border-left:8px solid #5f5590;border-top:5px solid transparent;
+  border-bottom:5px solid transparent}
+.pag{background:var(--morado);color:#fff;border-radius:999px;
+  font-size:12px;font-weight:600;padding:1px 10px}
+.lang{margin-left:auto;font-size:12px;font-weight:600;color:#5f5590;
+  background:#fff;border-radius:999px;padding:1px 10px}
+.desc{margin:4px 0 10px;font-size:14.5px}
+.codigo{position:relative}
+.codigo pre[class*="language-"]{margin:0;border-radius:4px;
+  background:var(--gris-cod);border:0;font-size:13px;max-height:620px}
+.codigo code{font-family:"Fira Code",Consolas,monospace}
+.copiar{position:absolute;top:8px;right:10px;z-index:2;cursor:pointer;
+  border:0;border-radius:999px;background:var(--morado);color:#fff;
+  font:600 12px "Fira Sans",sans-serif;padding:4px 14px;opacity:.9}
+.copiar:hover{opacity:1;background:var(--morado-osc)}
+.copiar.ok{background:#3a9e5f}
+footer{text-align:center;color:var(--gris);font-size:12px;padding:30px}
+@media (max-width:900px){
+  .pagina{display:block;padding:16px 16px 60px} .indice{display:none}
+  .portada{flex-wrap:wrap} .portada h1{font-size:28px}
+  .barra{padding:10px 16px} .barra .tit{font-size:12px}
+}
+@media print{
+  header,.indice,.copiar{display:none!important}
+  .pagina{display:block} .ficha{break-inside:avoid}
+  .codigo pre[class*="language-"]{max-height:none}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="barra">
+    <img src="data:image/png;base64,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" alt="ILERNA">
+    <span class="tit">Curso de especialización en IA y big data · <b>M02 · Sistemas de aprendizaje automático</b></span>
+  </div>
+</header>
+<main class="pagina">
+<nav class="indice" aria-label="Índice de M02"><div class="indice-tit">Índice</div><a class="i-tema" href="#tema-2"><b>2</b> Introducción al machine learning</a><a class="i-apt" href="#apt-2-1-1">2.1.1 Aprendizaje supervisado</a><a class="i-tema" href="#tema-3"><b>3</b> Algoritmos de machine learning para aprendizaje supervisado</a><a class="i-apt" href="#apt-3-introducción">3 (introducción) Introducción del tema</a><a class="i-apt" href="#apt-3-1">3.1 Algoritmos basados en regresiones</a><a class="i-apt" href="#apt-3-2">3.2 Algoritmos basados en árboles de decisión</a><a class="i-apt" href="#apt-3-3">3.3 Algoritmos de bagging</a><a class="i-apt" href="#apt-3-4">3.4 Algoritmos de boosting</a><a class="i-apt" href="#apt-3-5">3.5 Máquinas de vectores de soporte (SVM)</a><a class="i-tema" href="#tema-4"><b>4</b> Algoritmos de machine learning para aprendizaje no supervisado</a><a class="i-apt" href="#apt-4-1">4.1 Algoritmos de clustering</a><a class="i-apt" href="#apt-4-2">4.2 Algoritmos de reducción de características</a><a class="i-apt" href="#apt-4-3">4.3 Algoritmos de reglas de asociación</a><a class="i-tema" href="#tema-5"><b>5</b> Preprocesamiento de datos</a><a class="i-apt" href="#apt-5-1-2">5.1.2 Eliminación de registros incompletos</a><a class="i-apt" href="#apt-5-1-3">5.1.3 Imputación de valores</a><a class="i-apt" href="#apt-5-3">5.3 Valores duplicados</a><a class="i-apt" href="#apt-5-4-2-1">5.4.2.1 Codificación de variables ordinales</a><a class="i-apt" href="#apt-5-4-2-2">5.4.2.2 Codificación de variables nominales</a><a class="i-tema" href="#tema-6"><b>6</b> Optimización y ajuste de modelos</a><a class="i-apt" href="#apt-6-1">6.1 Selección de características</a><a class="i-apt" href="#apt-6-2">6.2 Ajuste de hiperparámetros</a><a class="i-tema" href="#tema-7"><b>7</b> Aprendizaje profundo</a><a class="i-apt" href="#apt-7-2-4">7.2.4 Ejemplo básico de red neuronal</a><a class="i-apt" href="#apt-7-3-2">7.3.2 Ejemplo de red convolucional</a><a class="i-apt" href="#apt-7-4-2">7.4.2 Ejemplo de una RNN</a><a class="i-apt" href="#apt-7-5-4">7.5.4 Grandes modelos del lenguaje (LLMs)</a></nav>
+<div class="contenido">
+<div class="portada"><div class="portada-txt">
+<div class="modulo">M02</div>
+<h1>SISTEMAS DE APRENDIZAJE AUTOMÁTICO</h1>
+<p class="curso">Curso de especialización en inteligencia artificial y big data</p>
+<h3 class="docente">Material web generado por el docente</h3>
+</div><div class="portada-n"><b>29</b> códigos</div></div>
+<section class="tema" id="tema-2"><div class="tema-cab"><span class="tema-num">2</span><h2>INTRODUCCIÓN AL MACHINE LEARNING</h2></div><section class="apartado" id="apt-2-1-1"><h3><span class="num">2.1.1</span><span class="sc">Aprendizaje supervisado</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 20‑21</span><span class="lang">Python</span></div><p class="desc">Estructura básica de un problema supervisado: carga el dataset Iris, mezcla y divide los datos a mano, entrena una regresión logística y compara predicciones con valores reales.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+np.random.seed(42)  # Para reproducibilidad, fijamos la semilla aleatoria
+
+# 1. Cargar el dataset
+# load_iris() devuelve un objeto con atributos:
+#   - data: las características (features) de cada muestra
+#   - target: la etiqueta de cada muestra
+#   - feature_names: nombres de las características
+iris = load_iris()
+X = iris.data    # Matriz de características, forma (150, 4)
+y = iris.target  # Vector de etiquetas, forma (150,)
+print(&quot;Dimensiones de X:&quot;, X.shape)
+print(&quot;Dimensiones de y:&quot;, y.shape)
+
+# 2. Mezclar y dividir los datos en entrenamiento (train) y prueba (test)
+test_ratio = 0.2  # 20 % de los datos para test, 80 % para entrenamiento
+num_samples = X.shape[0]
+num_test = int(num_samples * test_ratio)
+num_train = num_samples - num_test
+
+# Mezclamos los índices aleatoriamente
+indices = np.arange(num_samples)
+np.random.shuffle(indices)
+
+# Dividimos los datos
+train_indices = indices[:num_train]
+test_indices = indices[num_train:]
+X_train, y_train = X[train_indices], y[train_indices]
+X_test, y_test = X[test_indices], y[test_indices]
+print(&quot;Número de muestras de entrenamiento:&quot;, X_train.shape[0])
+print(&quot;Número de muestras de prueba:&quot;, X_test.shape[0])
+
+# 3. Crear y entrenar el modelo (regresión logística, un modelo supervisado clásico)
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+
+# 4. Hacer predicciones y evaluar
+y_pred = model.predict(X_test)
+print(&quot;Exactitud (accuracy):&quot;, accuracy_score(y_test, y_pred))
+
+# 5. Analizar las predicciones
+for i in range(len(y_test)):
+    print(f&quot;Muestra {i}: Real={y_test[i]}, Predicha={y_pred[i]}&quot;)</code></pre></div></article></section></section><section class="tema" id="tema-3"><div class="tema-cab"><span class="tema-num">3</span><h2>ALGORITMOS DE MACHINE LEARNING PARA APRENDIZAJE SUPERVISADO</h2></div><section class="apartado" id="apt-3-introducción"><h3><span class="num">3 (introducción)</span><span class="sc">Introducción del tema</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 34</span><span class="lang">Python</span></div><p class="desc">Carga los tres datasets que se usan en los ejemplos del tema (diabetes, iris y vinos) y los convierte en DataFrames.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">import pandas as pd
+from sklearn.datasets import load_diabetes, load_iris, load_wine
+
+# 1. Dataset de REGRESIÓN: predicción de progresión de diabetes
+diabetes = load_diabetes()
+X_reg, y_reg = diabetes.data, diabetes.target
+print(&quot;Dataset de regresión:&quot;)
+print(&quot;Características:&quot;, X_reg.shape)
+print(&quot;Variable objetivo:&quot;, y_reg.shape)
+print()
+
+# 2. Dataset de CLASIFICACIÓN: clasificación de flores iris
+iris = load_iris()
+X_clf, y_clf = iris.data, iris.target
+print(&quot;Dataset de clasificación:&quot;)
+print(&quot;Características:&quot;, X_clf.shape)
+print(&quot;Clases:&quot;, set(y_clf))
+print()
+
+# 3. Dataset de CLUSTERING: análisis de vinos (dataset real)
+wine = load_wine()
+X_cluster = wine.data
+y_cluster = wine.target  # Aunque existe la etiqueta, no la usaremos para entrenar
+print(&quot;Dataset de clustering:&quot;)
+print(&quot;Características:&quot;, X_cluster.shape)
+print(&quot;Número de variables:&quot;, len(wine.feature_names))
+print()
+
+# Convertimos a DataFrames para facilitar la exploración
+df_reg = pd.DataFrame(X_reg, columns=diabetes.feature_names)
+df_clf = pd.DataFrame(X_clf, columns=iris.feature_names)
+df_cluster = pd.DataFrame(X_cluster, columns=wine.feature_names)</code></pre></div></article></section><section class="apartado" id="apt-3-1"><h3><span class="num">3.1</span><span class="sc">Algoritmos basados en regresiones</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 36</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. Entrena una regresión lineal para predecir la progresión de la diabetes y la evalúa con MSE y R².</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from sklearn.datasets import load_diabetes
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+
+X_reg, y_reg = load_diabetes(return_X_y=True)
+
+# División de datos en entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(
+    X_reg, y_reg, test_size=0.2, random_state=42)
+
+# Creación y entrenamiento del modelo
+model_lin = LinearRegression()
+model_lin.fit(X_train, y_train)
+
+# Predicciones y evaluación
+y_pred = model_lin.predict(X_test)
+print(&quot;Error cuadrático medio (MSE):&quot;, mean_squared_error(y_test, y_pred))
+print(&quot;Coeficiente de determinación (R²):&quot;, r2_score(y_test, y_pred))</code></pre></div></article><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 37</span><span class="lang">Python</span></div><p class="desc">Ejemplo 2. Clasifica dos especies de Iris con una regresión logística sobre datos estandarizados.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from sklearn.datasets import load_iris
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+X_clf, y_clf = load_iris(return_X_y=True)
+
+# Seleccionamos solo dos clases (Iris setosa e Iris versicolor)
+mask = y_clf != 2
+X_bin, y_bin = X_clf[mask], y_clf[mask]
+
+# División en conjuntos de entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(
+    X_bin, y_bin, test_size=0.2, random_state=42)
+
+# Estandarización de las variables (ajustada con entrenamiento)
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Creación y entrenamiento del modelo
+model_log = LogisticRegression()
+model_log.fit(X_train, y_train)
+
+# Evaluación del modelo
+accuracy = model_log.score(X_test, y_test)
+print(&quot;Exactitud del modelo:&quot;, accuracy)</code></pre></div></article></section><section class="apartado" id="apt-3-2"><h3><span class="num">3.2</span><span class="sc">Algoritmos basados en árboles de decisión</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 39‑40</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. Entrena un árbol de decisión de profundidad 3 sobre Iris, mide su exactitud y dibuja el árbol.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+iris = load_iris()
+X_clf, y_clf = iris.data, iris.target
+
+# División del dataset
+X_train, X_test, y_train, y_test = train_test_split(
+    X_clf, y_clf, test_size=0.2, random_state=42)
+
+# Creación y entrenamiento del modelo
+tree_clf = DecisionTreeClassifier(max_depth=3, random_state=42)
+tree_clf.fit(X_train, y_train)
+
+# Evaluación del modelo
+y_pred = tree_clf.predict(X_test)
+print(&quot;Exactitud del modelo:&quot;, accuracy_score(y_test, y_pred))
+
+# Visualización del árbol
+plt.figure(figsize=(10, 6))
+plot_tree(tree_clf, feature_names=iris.feature_names,
+          class_names=iris.target_names, filled=True)
+plt.show()</code></pre></div></article><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 41</span><span class="lang">Python</span></div><p class="desc">Ejemplo 2. Árbol de regresión que predice la progresión de la diabetes.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from sklearn.datasets import load_diabetes
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+
+X_reg, y_reg = load_diabetes(return_X_y=True)
+
+# División de datos
+X_train, X_test, y_train, y_test = train_test_split(
+    X_reg, y_reg, test_size=0.2, random_state=42)
+
+# Creación y entrenamiento del modelo
+tree_reg = DecisionTreeRegressor(max_depth=3, random_state=42)
+tree_reg.fit(X_train, y_train)
+
+# Evaluación del modelo
+y_pred = tree_reg.predict(X_test)
+print(&quot;MSE:&quot;, mean_squared_error(y_test, y_pred))
+print(&quot;R²:&quot;, r2_score(y_test, y_pred))</code></pre></div></article></section><section class="apartado" id="apt-3-3"><h3><span class="num">3.3</span><span class="sc">Algoritmos de bagging</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 44</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. Random Forest de 100 árboles para clasificar las especies de Iris.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from sklearn.datasets import load_iris
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+X_clf, y_clf = load_iris(return_X_y=True)
+
+# División de datos
+X_train, X_test, y_train, y_test = train_test_split(
+    X_clf, y_clf, test_size=0.2, random_state=42)
+
+# Creamos el modelo Random Forest
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+
+# Entrenamos el modelo
+model.fit(X_train, y_train)
+
+# Evaluamos el rendimiento
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f&quot;Exactitud del modelo: {accuracy:.2f}&quot;)</code></pre></div></article><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 44</span><span class="lang">Python</span></div><p class="desc">Ejemplo 2. Random Forest aplicado a regresión sobre el dataset de diabetes.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from sklearn.datasets import load_diabetes
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+
+X_reg, y_reg = load_diabetes(return_X_y=True)
+
+# División de datos
+X_train, X_test, y_train, y_test = train_test_split(
+    X_reg, y_reg, test_size=0.2, random_state=42)
+
+# Creación y entrenamiento del modelo
+rf_reg = RandomForestRegressor(random_state=42, n_jobs=-1)
+rf_reg.fit(X_train, y_train)
+
+# Predicciones y evaluación
+y_pred = rf_reg.predict(X_test)
+print(&quot;Error cuadrático medio (MSE):&quot;, mean_squared_error(y_test, y_pred))
+print(&quot;Coeficiente de determinación (R²):&quot;, r2_score(y_test, y_pred))</code></pre></div></article></section><section class="apartado" id="apt-3-4"><h3><span class="num">3.4</span><span class="sc">Algoritmos de boosting</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 47</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. Clasificación de Iris con XGBoost (300 árboles poco profundos y submuestreo).</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python"># ¡Es una librería aparte de scikit-learn!
+# Para instalarla: pip install xgboost
+from xgboost import XGBClassifier
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+X_clf, y_clf = load_iris(return_X_y=True)
+
+# División de datos
+X_train, X_test, y_train, y_test = train_test_split(
+    X_clf, y_clf, test_size=0.2, random_state=42)
+
+# Creamos el modelo XGBoost
+model = XGBClassifier(
+    n_estimators=300,
+    max_depth=3,
+    learning_rate=0.05,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    random_state=42,
+    n_jobs=-1,
+    eval_metric=&quot;mlogloss&quot;,
+)
+
+# Entrenamos el modelo
+model.fit(X_train, y_train)
+
+# Evaluamos el rendimiento
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f&quot;Exactitud del modelo: {accuracy:.2f}&quot;)</code></pre></div></article><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 48</span><span class="lang">Python</span></div><p class="desc">Ejemplo 2. Regresión de la progresión de la diabetes con CatBoost.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python"># ¡Es una librería aparte de scikit-learn!
+# Para instalarla: pip install catboost
+from catboost import CatBoostRegressor
+from sklearn.datasets import load_diabetes
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+
+X_reg, y_reg = load_diabetes(return_X_y=True)
+
+# División de datos
+X_train, X_test, y_train, y_test = train_test_split(
+    X_reg, y_reg, test_size=0.2, random_state=42)
+
+# Creamos el modelo CatBoost Regressor, con hiperparámetros básicos
+model = CatBoostRegressor(
+    iterations=500,
+    depth=6,
+    learning_rate=0.05,
+    loss_function=&quot;RMSE&quot;,
+    random_state=42,
+    verbose=False,
+)
+
+# Entrenamos el modelo
+model.fit(X_train, y_train)
+
+# Evaluamos el rendimiento
+y_pred = model.predict(X_test)
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+print(f&quot;MSE: {mse:.2f}&quot;)
+print(f&quot;R²: {r2:.3f}&quot;)</code></pre></div></article></section><section class="apartado" id="apt-3-5"><h3><span class="num">3.5</span><span class="sc">Máquinas de vectores de soporte (SVM)</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 50</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. Clasificación de Iris con una SVM de kernel RBF dentro de un pipeline con escalado.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from sklearn.datasets import load_iris
+from sklearn.svm import SVC
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+X_clf, y_clf = load_iris(return_X_y=True)
+
+# División de datos
+X_train, X_test, y_train, y_test = train_test_split(
+    X_clf, y_clf, test_size=0.2, random_state=42)
+
+# Creamos el modelo SVM (con escalado previo)
+model = make_pipeline(
+    StandardScaler(),
+    SVC(kernel=&quot;rbf&quot;, C=1.0, gamma=&quot;scale&quot;),
+)
+
+# Entrenamos el modelo
+model.fit(X_train, y_train)
+
+# Evaluamos el rendimiento
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f&quot;Exactitud del modelo: {accuracy:.2f}&quot;)</code></pre></div></article></section></section><section class="tema" id="tema-4"><div class="tema-cab"><span class="tema-num">4</span><h2>ALGORITMOS DE MACHINE LEARNING PARA APRENDIZAJE NO SUPERVISADO</h2></div><section class="apartado" id="apt-4-1"><h3><span class="num">4.1</span><span class="sc">Algoritmos de clustering</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 55</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. Agrupa los vinos con K‑Means probando de 2 a 9 clusters y evalúa cada opción con el coeficiente de silueta.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from sklearn.cluster import KMeans
+from sklearn.datasets import load_wine
+from sklearn.metrics import silhouette_score
+from sklearn.preprocessing import StandardScaler
+
+X_cluster = load_wine().data
+
+# Estandarizamos las variables
+X_scaled = StandardScaler().fit_transform(X_cluster)
+
+for n in range(2, 10):
+    # Creamos y entrenamos el modelo K-Means
+    model = KMeans(n_clusters=n, n_init=10, random_state=42)
+    labels = model.fit_predict(X_scaled)
+
+    # Evaluamos con el coeficiente de silueta
+    score = silhouette_score(X_scaled, labels)
+    print(f&quot;Silhouette Score con {n} clusters: {score:.3f}&quot;)</code></pre></div></article></section><section class="apartado" id="apt-4-2"><h3><span class="num">4.2</span><span class="sc">Algoritmos de reducción de características</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 58‑60</span><span class="lang">Python</span></div><p class="desc">Aplica PCA al dataset de vinos: estandariza, calcula la varianza explicada acumulada y dibuja los tres primeros componentes en 3D.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">import matplotlib.pyplot as plt
+import pandas as pd
+import plotly.express as px
+import seaborn as sns
+from sklearn.datasets import load_wine
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+
+wine = load_wine()
+df_cluster = pd.DataFrame(wine.data, columns=wine.feature_names)
+
+# Estandarizamos: media 0 y desviación estándar 1
+scaler = StandardScaler()
+scaled_data = scaler.fit_transform(df_cluster)
+print(scaled_data)
+
+# PCA con tantos componentes como variables (13)
+pca = PCA(n_components=len(df_cluster.columns))
+pca.fit(scaled_data)
+
+# Varianza explicada acumulada según el número de componentes
+plot_data = pd.DataFrame({
+    &quot;components&quot;: list(range(1, len(df_cluster.columns) + 1)),
+    &quot;explainedVariance&quot;: pca.explained_variance_ratio_,
+})
+plot_data[&quot;explainedVariance&quot;] = plot_data[&quot;explainedVariance&quot;].cumsum()
+print(plot_data)
+
+sns.lineplot(data=plot_data, x=&quot;components&quot;, y=&quot;explainedVariance&quot;)
+plt.title(&quot;Varianza explicada acumulada por componentes principales&quot;)
+plt.gcf().set_size_inches(12, 8)  # Tamaño de la figura
+plt.show()
+
+# Scatterplot 3D de las tres primeras componentes
+pca = PCA(n_components=3)
+pca_data = pca.fit_transform(scaled_data)
+pca_data = pd.DataFrame(pca_data,
+                        columns=[&quot;component_1&quot;, &quot;component_2&quot;, &quot;component_3&quot;])
+pca_data[&quot;target&quot;] = wine.target.astype(str)
+
+fig = px.scatter_3d(pca_data, x=&quot;component_1&quot;, y=&quot;component_2&quot;,
+                    z=&quot;component_3&quot;, color=&quot;target&quot;, height=600)
+fig.show()</code></pre></div></article></section><section class="apartado" id="apt-4-3"><h3><span class="num">4.3</span><span class="sc">Algoritmos de reglas de asociación</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 63</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. Obtiene conjuntos frecuentes y reglas de asociación con Apriori sobre unas transacciones de cesta de la compra.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python"># ¡Es una librería aparte de scikit-learn!
+# Para instalarla: pip install mlxtend
+import pandas as pd
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# Creamos un conjunto de transacciones simplificado
+dataset = [
+    [&quot;pan&quot;, &quot;leche&quot;, &quot;mantequilla&quot;],
+    [&quot;pan&quot;, &quot;leche&quot;],
+    [&quot;pan&quot;, &quot;mantequilla&quot;],
+    [&quot;leche&quot;, &quot;galletas&quot;],
+    [&quot;pan&quot;, &quot;galletas&quot;, &quot;mantequilla&quot;],
+]
+
+# Convertimos las transacciones en una matriz binaria de presencia/ausencia
+items = sorted({item for transaction in dataset for item in transaction})
+df = pd.DataFrame([[item in t for item in items] for t in dataset],
+                  columns=items)
+
+# Aplicamos Apriori con un soporte mínimo
+frequent_itemsets = apriori(df, min_support=0.4, use_colnames=True)
+
+# Generamos reglas de asociación con confianza y lift
+rules = association_rules(frequent_itemsets, metric=&quot;confidence&quot;,
+                          min_threshold=0.5)
+
+print(&quot;Reglas generadas:&quot;)
+print(rules[[&quot;antecedents&quot;, &quot;consequents&quot;, &quot;support&quot;, &quot;confidence&quot;, &quot;lift&quot;]])</code></pre></div></article></section></section><section class="tema" id="tema-5"><div class="tema-cab"><span class="tema-num">5</span><h2>PREPROCESAMIENTO DE DATOS</h2></div><section class="apartado" id="apt-5-1-2"><h3><span class="num">5.1.2</span><span class="sc">Eliminación de registros incompletos</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 69</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. Cuenta los valores ausentes por columna y elimina las filas incompletas.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">import numpy as np
+import pandas as pd
+
+# DataFrame de ejemplo con valores ausentes
+df = pd.DataFrame({
+    &quot;ocupacion&quot;: [&quot;ingeniero&quot;, &quot;ingeniero&quot;, &quot;docente&quot;,
+                  &quot;docente&quot;, &quot;docente&quot;, &quot;ingeniero&quot;],
+    &quot;edad&quot;: [34, 41, 29, np.nan, 52, 38],
+    &quot;renta&quot;: [42000, np.nan, 28000, 31000, np.nan, 45000],
+})
+
+print(&quot;\nValores ausentes por columna:&quot;)
+print(df.isna().sum())
+
+# Eliminamos los registros incompletos
+df_clean = df.dropna()
+print(df_clean)</code></pre></div></article></section><section class="apartado" id="apt-5-1-3"><h3><span class="num">5.1.3</span><span class="sc">Imputación de valores</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 71</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. Imputación simple de una columna con la media, la mediana o la moda (tres alternativas).</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">import numpy as np
+import pandas as pd
+
+# DataFrame de ejemplo con valores ausentes
+df = pd.DataFrame({
+    &quot;ocupacion&quot;: [&quot;ingeniero&quot;, &quot;ingeniero&quot;, &quot;docente&quot;,
+                  &quot;docente&quot;, &quot;docente&quot;, &quot;ingeniero&quot;],
+    &quot;edad&quot;: [34, 41, 29, np.nan, 52, 38],
+    &quot;renta&quot;: [42000, np.nan, 28000, 31000, np.nan, 45000],
+})
+
+columna_a_imputar = &quot;renta&quot;  # Nombre real de la columna que se desea imputar
+
+# Opción A: imputación con la media
+df_media = df.copy()
+df_media[columna_a_imputar] = df_media[columna_a_imputar].fillna(
+    df_media[columna_a_imputar].mean())
+
+# Opción B: imputación con la mediana
+df_mediana = df.copy()
+df_mediana[columna_a_imputar] = df_mediana[columna_a_imputar].fillna(
+    df_mediana[columna_a_imputar].median())
+
+# Opción C: imputación con la moda
+df_moda = df.copy()
+df_moda[columna_a_imputar] = df_moda[columna_a_imputar].fillna(
+    df_moda[columna_a_imputar].mode()[0])</code></pre></div></article><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 72</span><span class="lang">Python</span></div><p class="desc">Ejemplo 2. Imputación condicional: rellena los valores con la media, la mediana o la moda de su subgrupo.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">import numpy as np
+import pandas as pd
+
+# DataFrame de ejemplo con valores ausentes
+df = pd.DataFrame({
+    &quot;ocupacion&quot;: [&quot;ingeniero&quot;, &quot;ingeniero&quot;, &quot;docente&quot;,
+                  &quot;docente&quot;, &quot;docente&quot;, &quot;ingeniero&quot;],
+    &quot;edad&quot;: [34, 41, 29, np.nan, 52, 38],
+    &quot;renta&quot;: [42000, np.nan, 28000, 31000, np.nan, 45000],
+})
+
+columna_a_imputar = &quot;renta&quot;       # Columna que se desea imputar
+columna_subgrupo = &quot;ocupacion&quot;    # Columna que define los subgrupos
+grupos = df.groupby(columna_subgrupo)[columna_a_imputar]
+
+# Opción A: media según el subgrupo
+df_media = df.copy()
+df_media[columna_a_imputar] = df_media[columna_a_imputar].fillna(
+    grupos.transform(&quot;mean&quot;))
+
+# Opción B: mediana según el subgrupo
+df_mediana = df.copy()
+df_mediana[columna_a_imputar] = df_mediana[columna_a_imputar].fillna(
+    grupos.transform(&quot;median&quot;))
+
+# Opción C: moda según el subgrupo
+df_moda = df.copy()
+df_moda[columna_a_imputar] = df_moda[columna_a_imputar].fillna(
+    grupos.transform(lambda x: x.mode()[0]))</code></pre></div></article><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 73</span><span class="lang">Python</span></div><p class="desc">Ejemplo 3. Imputación con modelos: estima los valores ausentes a partir de los K vecinos más cercanos (KNNImputer).</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">import numpy as np
+import pandas as pd
+
+# DataFrame de ejemplo con valores ausentes
+df = pd.DataFrame({
+    &quot;ocupacion&quot;: [&quot;ingeniero&quot;, &quot;ingeniero&quot;, &quot;docente&quot;,
+                  &quot;docente&quot;, &quot;docente&quot;, &quot;ingeniero&quot;],
+    &quot;edad&quot;: [34, 41, 29, np.nan, 52, 38],
+    &quot;renta&quot;: [42000, np.nan, 28000, 31000, np.nan, 45000],
+})
+
+from sklearn.impute import KNNImputer
+
+# KNNImputer trabaja con las columnas numéricas
+columnas_numericas = df.select_dtypes(&quot;number&quot;).columns
+
+imputer = KNNImputer(n_neighbors=2)
+df[columnas_numericas] = imputer.fit_transform(df[columnas_numericas])
+print(df)</code></pre></div></article></section><section class="apartado" id="apt-5-3"><h3><span class="num">5.3</span><span class="sc">Valores duplicados</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 75</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. Detecta y elimina registros duplicados.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">import pandas as pd
+
+df = pd.DataFrame({&quot;id&quot;: [1, 2, 2, 3], &quot;valor&quot;: [&quot;a&quot;, &quot;b&quot;, &quot;b&quot;, &quot;c&quot;]})
+
+# Detección de duplicados
+print(df.duplicated().sum())
+
+# Eliminar duplicados
+df = df.drop_duplicates()</code></pre></div></article></section><section class="apartado" id="apt-5-4-2-1"><h3><span class="num">5.4.2.1</span><span class="sc">Codificación de variables ordinales</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 78</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. Codifica una variable ordinal asignando un número a cada categoría según su orden.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">import pandas as pd
+
+df = pd.DataFrame({&quot;satisfaccion&quot;: [&quot;Bueno&quot;, &quot;Malo&quot;, &quot;Medio&quot;, &quot;Bueno&quot;]})
+
+satisfaccion_mapping = {&quot;Malo&quot;: 0, &quot;Medio&quot;: 1, &quot;Bueno&quot;: 2}
+df[&quot;nota_codificada&quot;] = df[&quot;satisfaccion&quot;].map(satisfaccion_mapping)
+print(df)</code></pre></div></article></section><section class="apartado" id="apt-5-4-2-2"><h3><span class="num">5.4.2.2</span><span class="sc">Codificación de variables nominales</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 79‑80</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. One‑hot encoding de una variable nominal con get_dummies, con y sin drop_first.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">import pandas as pd
+
+df = pd.DataFrame({&quot;color_coche&quot;: [&quot;rojo&quot;, &quot;negro&quot;, &quot;azul&quot;, &quot;rojo&quot;]})
+
+# Reemplaza &#x27;color_coche&#x27; con el nombre real de la columna que deseas codificar
+columna = &quot;color_coche&quot;
+df_encoded = pd.get_dummies(df, columns=[columna], prefix=&quot;c&quot;)
+print(df_encoded)
+
+# Eliminando una columna para evitar multicolinealidad
+df_encoded = pd.get_dummies(df, columns=[columna], prefix=&quot;c&quot;,
+                            drop_first=True)
+print(df_encoded)</code></pre></div></article></section></section><section class="tema" id="tema-6"><div class="tema-cab"><span class="tema-num">6</span><h2>OPTIMIZACIÓN Y AJUSTE DE MODELOS</h2></div><section class="apartado" id="apt-6-1"><h3><span class="num">6.1</span><span class="sc">Selección de características</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 86</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. Método de filtro: selecciona las 10 mejores variables del dataset breast_cancer con la prueba chi².</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from sklearn.feature_selection import SelectKBest, chi2
+from sklearn.datasets import load_breast_cancer
+
+X, y = load_breast_cancer(return_X_y=True)
+
+selector = SelectKBest(chi2, k=10)
+X_reducido = selector.fit_transform(X, y)
+print(&quot;Número de características seleccionadas:&quot;, X_reducido.shape[1])</code></pre></div></article><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 87</span><span class="lang">Python</span></div><p class="desc">Ejemplo 2. Método de envoltura: eliminación recursiva de características (RFE) con una regresión logística.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from sklearn.datasets import load_breast_cancer
+from sklearn.feature_selection import RFE
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
+
+X, y = load_breast_cancer(return_X_y=True)
+X_scaled = StandardScaler().fit_transform(X)
+
+modelo = LogisticRegression(max_iter=500)
+selector = RFE(modelo, n_features_to_select=8)
+selector.fit(X_scaled, y)
+print(&quot;Características seleccionadas:&quot;, selector.support_)</code></pre></div></article></section><section class="apartado" id="apt-6-2"><h3><span class="num">6.2</span><span class="sc">Ajuste de hiperparámetros</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 88</span><span class="lang">Python</span></div><p class="desc">Ejemplo 1. Búsqueda en rejilla (GridSearchCV) de la profundidad y el criterio de un árbol de decisión.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import GridSearchCV
+from sklearn.tree import DecisionTreeClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+
+parametros = {&quot;max_depth&quot;: [2, 4, 6], &quot;criterion&quot;: [&quot;gini&quot;, &quot;entropy&quot;]}
+modelo = DecisionTreeClassifier(random_state=0)
+grid = GridSearchCV(modelo, parametros, cv=5)
+grid.fit(X, y)
+print(&quot;Mejores parámetros:&quot;, grid.best_params_)</code></pre></div></article><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 89</span><span class="lang">Python</span></div><p class="desc">Ejemplo 2. Búsqueda aleatoria (RandomizedSearchCV) de hiperparámetros de un árbol de decisión.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from scipy.stats import randint
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import RandomizedSearchCV
+from sklearn.tree import DecisionTreeClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+modelo = DecisionTreeClassifier(random_state=0)
+
+parametros = {&quot;max_depth&quot;: randint(2, 10),
+              &quot;min_samples_split&quot;: randint(2, 10)}
+rand_search = RandomizedSearchCV(modelo, parametros, n_iter=10, cv=5,
+                                 random_state=0)
+rand_search.fit(X, y)
+print(&quot;Mejores parámetros aleatorios:&quot;, rand_search.best_params_)</code></pre></div></article></section></section><section class="tema" id="tema-7"><div class="tema-cab"><span class="tema-num">7</span><h2>APRENDIZAJE PROFUNDO</h2></div><section class="apartado" id="apt-7-2-4"><h3><span class="num">7.2.4</span><span class="sc">Ejemplo básico de red neuronal</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 100‑103</span><span class="lang">Python</span></div><p class="desc">Perceptrón multicapa (MLP) con Keras para clasificar las tres especies de Iris: preparación de datos, construcción, compilación, entrenamiento, evaluación y predicción.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras.utils import to_categorical
+
+# Cargar y preparar los datos
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Codificación one-hot de las etiquetas
+y_encoded = to_categorical(y)
+
+# División en entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y_encoded, test_size=0.2, random_state=42)
+
+# Escalado de las variables numéricas
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Construcción del modelo
+model = keras.Sequential([
+    keras.Input(shape=(4,)),
+    layers.Dense(8, activation=&quot;relu&quot;),
+    layers.Dense(6, activation=&quot;relu&quot;),
+    layers.Dense(3, activation=&quot;softmax&quot;),  # 3 clases de salida
+])
+
+# Compilación del modelo
+model.compile(optimizer=&quot;adam&quot;,
+              loss=&quot;categorical_crossentropy&quot;,
+              metrics=[&quot;accuracy&quot;])
+
+# Entrenamiento del modelo
+history = model.fit(X_train, y_train, epochs=100, batch_size=8,
+                    verbose=0, validation_split=0.1)
+
+# Evaluación del modelo
+loss, accuracy = model.evaluate(X_test, y_test, verbose=0)
+print(f&quot;Accuracy del modelo en el conjunto de prueba: {accuracy:.2f}&quot;)
+
+# Predicción sobre nuevas observaciones
+predicciones = model.predict(X_test[:5])
+print(&quot;\nEjemplo de predicciones (probabilidades):\n&quot;, predicciones)</code></pre></div></article></section><section class="apartado" id="apt-7-3-2"><h3><span class="num">7.3.2</span><span class="sc">Ejemplo de red convolucional</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 106‑108</span><span class="lang">Python</span></div><p class="desc">Red convolucional (CNN) que clasifica los dígitos manuscritos de MNIST.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.utils import to_categorical
+
+# Cargar y preparar los datos
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
+
+# Normalizar valores de píxeles (0-255) al rango [0, 1]
+X_train = X_train.astype(&quot;float32&quot;) / 255.0
+X_test = X_test.astype(&quot;float32&quot;) / 255.0
+
+# Redimensionar para incluir el canal (1 para imágenes en escala de grises)
+X_train = X_train.reshape(-1, 28, 28, 1)
+X_test = X_test.reshape(-1, 28, 28, 1)
+
+# Codificar las etiquetas como vectores one-hot
+y_train = to_categorical(y_train, 10)
+y_test = to_categorical(y_test, 10)
+
+# Definir la arquitectura de la CNN
+model = keras.Sequential([
+    keras.Input(shape=(28, 28, 1)),
+    layers.Conv2D(32, (3, 3), activation=&quot;relu&quot;),
+    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(64, (3, 3), activation=&quot;relu&quot;),
+    layers.MaxPooling2D((2, 2)),
+    layers.Flatten(),
+    layers.Dense(64, activation=&quot;relu&quot;),
+    layers.Dense(10, activation=&quot;softmax&quot;),
+])
+
+# Compilar el modelo
+model.compile(optimizer=&quot;adam&quot;,
+              loss=&quot;categorical_crossentropy&quot;,
+              metrics=[&quot;accuracy&quot;])
+
+# Entrenar el modelo
+history = model.fit(X_train, y_train, epochs=5, batch_size=64,
+                    validation_split=0.1, verbose=1)
+
+# Evaluar el rendimiento
+test_loss, test_acc = model.evaluate(X_test, y_test, verbose=0)
+print(f&quot;\nExactitud en el conjunto de prueba: {test_acc:.3f}&quot;)</code></pre></div></article></section><section class="apartado" id="apt-7-4-2"><h3><span class="num">7.4.2</span><span class="sc">Ejemplo de una RNN</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 112‑113</span><span class="lang">Python</span></div><p class="desc">Red LSTM para análisis de sentimientos de las reseñas de películas de IMDB (positiva o negativa).</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python">from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras.datasets import imdb
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+
+# Cargar el dataset IMDB
+num_palabras = 1000  # Se considerarán las 1000 palabras más frecuentes
+(X_train, y_train), (X_test, y_test) = imdb.load_data(num_words=num_palabras)
+
+print(&quot;Tamaño del conjunto de entrenamiento:&quot;, len(X_train))
+print(&quot;Ejemplo de secuencia codificada:\n&quot;, X_train[0][:20])
+
+# Preprocesamiento: normalización de la longitud de las secuencias
+max_longitud = 100  # Todas las reseñas tendrán la misma longitud
+X_train = pad_sequences(X_train, maxlen=max_longitud)
+X_test = pad_sequences(X_test, maxlen=max_longitud)
+
+# Construcción del modelo LSTM
+model = keras.Sequential([
+    keras.Input(shape=(max_longitud,)),
+    layers.Embedding(input_dim=num_palabras, output_dim=64),
+    layers.LSTM(128, return_sequences=False),
+    layers.Dropout(0.2),
+    layers.Dense(1, activation=&quot;sigmoid&quot;),  # Salida binaria: positivo/negativo
+])
+
+# Compilación
+model.compile(optimizer=&quot;adam&quot;, loss=&quot;binary_crossentropy&quot;,
+              metrics=[&quot;accuracy&quot;])
+
+# Entrenamiento
+history = model.fit(X_train, y_train, epochs=4, batch_size=128,
+                    validation_split=0.2, verbose=1)
+
+# Evaluación del modelo
+loss, accuracy = model.evaluate(X_test, y_test, verbose=0)
+print(f&quot;\nExactitud del modelo en el conjunto de prueba: {accuracy:.3f}&quot;)</code></pre></div></article></section><section class="apartado" id="apt-7-5-4"><h3><span class="num">7.5.4</span><span class="sc">Grandes modelos del lenguaje (LLMs)</span></h3><article class="ficha"><div class="ficha-cab"><span class="lapiz" aria-hidden="true"></span><span class="pag">Pág. 118</span><span class="lang">Python</span></div><p class="desc">Genera texto con el modelo GPT‑2 de Hugging Face a partir de un prompt inicial.</p><div class="codigo"><button class="copiar" type="button" aria-label="Copiar el código">Copiar</button><pre class="line-numbers"><code class="language-python"># Requiere: pip install transformers torch
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+
+# Cargar modelo y tokenizador
+tokenizer = GPT2Tokenizer.from_pretrained(&quot;openai-community/gpt2-medium&quot;)
+model = GPT2LMHeadModel.from_pretrained(&quot;openai-community/gpt2-medium&quot;)
+
+# Texto inicial (prompt)
+prompt = &quot;The most important thing in life is&quot;
+inputs = tokenizer(prompt, return_tensors=&quot;pt&quot;)
+
+# Generar texto
+outputs = model.generate(**inputs, max_new_tokens=30, do_sample=True,
+                         temperature=0.8, top_p=0.9,
+                         pad_token_id=tokenizer.eos_token_id)
+texto_generado = tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+print(&quot;\nTexto generado:\n&quot;)
+print(texto_generado)</code></pre></div></article></section></section>
+</div>
+</main>
+<footer>ILERNA · M02 Sistemas de aprendizaje automático · Curso de especialización en inteligencia artificial y big data</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-latex.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-powershell.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-nasm.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-http.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".indice a").forEach(a =>
+    a.addEventListener("click", e => {
+      e.preventDefault();
+      const el = document.querySelector(a.getAttribute("href"));
+      if (el) el.scrollIntoView({behavior: "smooth", block: "start"});
+    }));
+
+  // Copiar al portapapeles
+  document.querySelectorAll(".copiar").forEach(b =>
+    b.addEventListener("click", () => {
+      const texto = b.parentElement.querySelector("code").textContent;
+      const hecho = () => {
+        b.textContent = "¡Copiado!"; b.classList.add("ok");
+        setTimeout(() => { b.textContent = "Copiar"; b.classList.remove("ok"); }, 1600);
+      };
+      const alternativo = () => {
+        const ta = document.createElement("textarea");
+        ta.value = texto; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); hecho(); } finally { ta.remove(); }
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(texto).then(hecho).catch(alternativo);
+      } else {
+        alternativo();
+      }
+    }));
+
+  if (window.Prism) Prism.highlightAll();
+});
+</script>
+</body>
+</html>
